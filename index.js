@@ -17,12 +17,11 @@ var totalearnings = 0;
 function calculatemaxearnings (time,earnings,possiblesolution){
     if(earnings > totalearnings){
         totalearnings = earnings;
-        solutions = possiblesolution.map((ele)=>{return ele});
+        solutions = [];
+        solutions.push(possiblesolution.map((ele)=>{return ele}));
     }
-    else if(earnings == totalearnings){
-        solutions.push(possiblesolution.map((ele)=>{
-            return (ele);
-        }));
+    else if(earnings === totalearnings){
+        solutions.push(possiblesolution.map((ele)=>{return ele}));
     }
     for(var i=0; i<3;i++){
         if(timearr[i] < time){
@@ -36,11 +35,9 @@ const main = async()=>{
         time = parseInt(await prompt("Enter Time: "));
         calculatemaxearnings(time,0,new Array(3).fill(0));   
         console.log("Earnings: $"+totalearnings);
-        console.log(solutions);
         solutions.forEach((solution,index)=>{
-            console.log(solution);
-            console.log(index+1+". T: "+solution[0]+" P: "+solution[1]+" C: "+solution[2]);
-        })
+                console.log(index+1+". T: "+solution[0]+" P: "+solution[1]+" C: "+solution[2]);
+        });
     }
 
 main();
